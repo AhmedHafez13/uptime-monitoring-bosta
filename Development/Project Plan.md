@@ -14,22 +14,22 @@
 
 ### 1. Programming Language: `TypeScript`
 
-**Choosing TypeScript over JavaScript:**
+**Choosing `TypeScript` over `JavaScript`:**
 
-Using TypeScript over JavaScript can provide several advantages, especially as the project grows:
-- **Type Safety:** TypeScript introduces static typing, helping catch errors during development.
-- **Intellisense:** IDEs provide better code suggestions and auto-completion with TypeScript.
+Using `TypeScript` over `JavaScript` can provide several advantages, especially as the project grows:
+- **Type Safety:** `TypeScript` introduces static typing, helping catch errors during development.
+- **Intellisense:** IDEs provide better code suggestions and auto-completion with `TypeScript`.
 - **Code Documentation:** Type annotations serve as documentation, making code more understandable.
-- **Refactoring:** TypeScript assists in safely refactoring code.
-- **Maintainability:** TypeScript's features contribute to writing more robust and maintainable code.
+- **Refactoring:** `TypeScript` assists in safely refactoring code.
+- **Maintainability:** `TypeScript`'s features contribute to writing more robust and maintainable code.
 
 -----
 
-### 2. **Backend Framework**: Node.js with Express.js
+### 2. **Backend Framework**: `Node.js` with `Express.js`
 
 **Express.js**
 
-1. **Minimalistic:** Express.js is giving you flexibility to structure your application according to your needs.
+1. **Minimalistic:** `Express.js` is giving you flexibility to structure your application according to your needs.
 
 2. **Middleware:** Built around middleware, Express simplifies handling requests, enabling modular and reusable code.
 
@@ -41,7 +41,7 @@ Using TypeScript over JavaScript can provide several advantages, especially as t
 
 -----
 
-### 3. **Database Engine**: MongoDB
+### 3. **Database Engine**: `MongoDB`
 
 **Why to use MongoDB?**
 
@@ -57,11 +57,11 @@ Using TypeScript over JavaScript can provide several advantages, especially as t
 
 -----
 
-### 4. **Authentication**: Passport.js
+### 4. **Authentication**: `Passport.js`
 
-reasons to choose Passport.js for authentication over other solutions:
+**Reasons to choose `Passport.js` for authentication over other solutions:**
 
-1. **Easy Implementation:** Passport.js is known for its straightforward integration, making authentication implementation easier.
+1. **Easy Implementation:** `Passport.js` is known for its straightforward integration, making authentication implementation easier.
 
 2. **Middleware Integration:** Integrates seamlessly into Express.js middleware, enhancing compatibility and simplifying code organization.
 
@@ -71,39 +71,39 @@ reasons to choose Passport.js for authentication over other solutions:
 
 5. **Wide Strategy Support:** Offers a wide range of authentication strategies (Local, OAuth, OpenID, etc.), accommodating different authentication needs.
 
-Overall, Passport.js offers ease of implementation, various strategies, and community support, making it a solid choice for authentication in the project.
+Overall, `Passport.js` offers ease of implementation, various strategies, and community support, making it a solid choice for authentication in the project.
 
 -----
 
-### 5. **Testing Framework**: Jest
+### 5. **Testing Framework**: `Jest`
 
 **Jest:**
 
-1. **Zero Configuration:** Jest requires minimal configuration out of the box, reducing setup time.
+1. **Zero Configuration:** `Jest` requires minimal configuration out of the box, reducing setup time.
 
 2. **Simple Syntax:** Its syntax is easy to understand and write, encouraging testing adoption across the team.
 
-3. **Mocking:** Jest simplifies mocking complex dependencies, enhancing isolated unit testing.
+3. **Mocking:** `Jest` simplifies mocking complex dependencies, enhancing isolated unit testing.
 
-5. **Parallel Execution:** Jest's parallel test execution speeds up test runs, improving development efficiency.
+5. **Parallel Execution:** `Jest`'s parallel test execution speeds up test runs, improving development efficiency.
 
 -----
 
-### 6. **Email Verification**: Nodemailer
+### 6. **Email Verification**: `Nodemailer`
 
 **Nodemailer:**
 
-1. **Backend Integration:** Nodemailer is designed for server-side email sending, making it suitable for email verification within the backend.
+1. **Backend Integration:** `Nodemailer` is designed for server-side email sending, making it suitable for email verification within the backend.
 
 2. **Customization:** Provides fine-grained control over email content and appearance, ensuring a tailored verification experience.
 
 3. **SMTP Support:** Works with various SMTP providers, allowing you to choose the best option for sending emails.
 
-4. **Error Handling:** Nodemailer offers comprehensive error handling, enabling you to manage various email-related scenarios.
+4. **Error Handling:** `Nodemailer` offers comprehensive error handling, enabling you to manage various email-related scenarios.
 
 5. **Async Capabilities:** Supports asynchronous operations, fitting seamlessly into Node.js's event-driven, non-blocking architecture.
 
-Nodemailer's backend-focused features and flexibility make it a reliable choice for implementing email verification in the project.
+`Nodemailer`'s backend-focused features and flexibility make it a reliable choice for implementing email verification in the project.
 
 -----
 
@@ -128,7 +128,7 @@ Implementation:
 
 
 
-## Environment
+## Development Environment
 
 ### Tools and Software
 
