@@ -10,20 +10,21 @@
 6. **Email Verification**: Nodemailer
 7. **Notification Channels**: Modular and extensible architecture
 
------
+---
 
 ### 1. Programming Language: `TypeScript`
 
 **Choosing `TypeScript` over `JavaScript`:**
 
 Using `TypeScript` over `JavaScript` can provide several advantages, especially as the project grows:
+
 - **Type Safety:** `TypeScript` introduces static typing, helping catch errors during development.
 - **Intellisense:** IDEs provide better code suggestions and auto-completion with `TypeScript`.
 - **Code Documentation:** Type annotations serve as documentation, making code more understandable.
 - **Refactoring:** `TypeScript` assists in safely refactoring code.
 - **Maintainability:** `TypeScript`'s features contribute to writing more robust and maintainable code.
 
------
+---
 
 ### 2. **Backend Framework**: `Node.js` with `Express.js`
 
@@ -39,7 +40,7 @@ Using `TypeScript` over `JavaScript` can provide several advantages, especially 
 
 5. **Scalability:** Its lightweight nature allows for efficient handling of requests, making it suitable for both small and large projects.
 
------
+---
 
 ### 3. **Database Engine**: `MongoDB`
 
@@ -55,7 +56,7 @@ Using `TypeScript` over `JavaScript` can provide several advantages, especially 
 
 5. **Horizontal Scalability:** MongoDB's ability to scale horizontally makes it well-suited for projects with potential high data volume and traffic.
 
------
+---
 
 ### 4. **Authentication**: `Passport.js`
 
@@ -73,7 +74,7 @@ Using `TypeScript` over `JavaScript` can provide several advantages, especially 
 
 Overall, `Passport.js` offers ease of implementation, various strategies, and community support, making it a solid choice for authentication in the project.
 
------
+---
 
 ### 5. **Testing Framework**: `Jest`
 
@@ -85,9 +86,9 @@ Overall, `Passport.js` offers ease of implementation, various strategies, and co
 
 3. **Mocking:** `Jest` simplifies mocking complex dependencies, enhancing isolated unit testing.
 
-5. **Parallel Execution:** `Jest`'s parallel test execution speeds up test runs, improving development efficiency.
+4. **Parallel Execution:** `Jest`'s parallel test execution speeds up test runs, improving development efficiency.
 
------
+---
 
 ### 6. **Email Verification**: `Nodemailer`
 
@@ -105,13 +106,14 @@ Overall, `Passport.js` offers ease of implementation, various strategies, and co
 
 `Nodemailer`'s backend-focused features and flexibility make it a reliable choice for implementing email verification in the project.
 
------
+---
 
 ### 7. **Notification Channels**: Modular and extensible architecture
 
 Modular architecture is an approach to designing software systems by breaking them down into smaller, self-contained modules or components. Each module handles a specific functionality or set of related functionalities. These modules are designed to be independent, allowing them to be developed, tested, and maintained separately.
 
 Benefits of Modular Architecture:
+
 - **Reusability:** Modules can be reused across different parts of an application or even in different projects.
 - **Maintainability:** Isolating modules makes it easier to update and maintain individual components without affecting the entire system.
 - **Scalability:** New features or components can be added without disrupting existing functionality.
@@ -119,14 +121,13 @@ Benefits of Modular Architecture:
 - **Testing:** Smaller modules are easier to test in isolation, improving the overall quality of the system.
 
 Implementation:
+
 - **Single Responsibility Principle:** Each module should have a clear and single responsibility.
 - **Encapsulation:** Modules should expose only the necessary interfaces to interact with them.
 - **Dependency Management:** Modules can communicate through well-defined interfaces and avoid tight coupling.
 - **Abstraction and Interfaces:** Clearly define interfaces between modules to ensure flexibility and ease of replacement.
 
------
-
-
+---
 
 ## Development Environment
 
@@ -137,3 +138,60 @@ Implementation:
 - **npm:** Version 8.19.4
 - **Docker:** Version 24.0.5
 - **Docker Compose:** Version 2.20.2
+
+## Project Structure
+
+```
+uptime-monitoring-bosta/
+├── development/
+│   ├── api-docs.md
+│   ├── requirements.md
+│   ├── project-plan.md
+│   ├── todos.md
+│   └── screenshots/
+├── src/
+│   ├── app.js
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── config/
+│   └── tests/
+├── docker/
+│   ├── backend.Dockerfile
+│   ├── mongo.Dockerfile
+│   └── docker-compose.yml
+├── .git
+├── .gitignore
+└── README.md
+```
+
+**Explanation of Structure:**
+
+- `development/`: Contains documentation and planning files related to the project's development process.
+
+  - `api-docs.md`: API documentation file.
+  - `requirements.md`: Project requirements and specifications.
+  - `project-plan.md`: High-level project plan and architecture.
+  - `todos.md`: List of tasks to complete.
+  - `screenshots/`: A folder to store screenshots or visual aids related to your project.
+
+- `src/`: Contains the actual source code of your application.
+
+  - `app.js`: Entry point of the application.
+  - `routes/`: Contains route definitions.
+  - `controllers/`: Contains controller logic for routes.
+  - `models/`: Contains data models.
+  - `config/`: Contains configuration files.
+  - `tests/`: Contains unit and integration tests.
+
+- `docker/`: Contains Docker-related files for containerization.
+
+  - `backend.Dockerfile`: Dockerfile for the backend application.
+  - `mongo.Dockerfile`: Dockerfile for MongoDB.
+  - `docker-compose.yml`: Docker Compose file to orchestrate containers.
+
+- `.git`: Hidden folder for Git version control.
+
+- `.gitignore`: Specifies files and directories to ignore in version control.
+
+- `README.md`: Main README file that provides an overview of the project, setup instructions, and other important information.
