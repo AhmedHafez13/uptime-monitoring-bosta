@@ -141,7 +141,7 @@ Implementation:
 
 ## Project Structure
 
-```
+```plaintext
 uptime-monitoring-bosta/
 ├── development/
 │   ├── api-docs.md
@@ -155,7 +155,11 @@ uptime-monitoring-bosta/
 │   ├── controllers/
 │   ├── models/
 │   ├── config/
-│   └── tests/
+│   ├── services/
+│   ├── notifications/
+│   ├── plugins/
+│   ├── tests/
+│   └── ...
 ├── docker/
 │   ├── backend.Dockerfile
 │   ├── mongo.Dockerfile
@@ -181,6 +185,9 @@ uptime-monitoring-bosta/
   - `routes/`: Contains route definitions.
   - `controllers/`: Contains controller logic for routes.
   - `models/`: Contains data models.
+  - `services/`: Provides core functionalities of your application. This is where the business logic can reside.
+  - `notifications/`: Each notification channel (email, webhook, etc.) can have its own module within this directory.
+  - `plugins/`: This directory can hold modules that can be dynamically loaded into your application.
   - `config/`: Contains configuration files.
   - `tests/`: Contains unit and integration tests.
 
