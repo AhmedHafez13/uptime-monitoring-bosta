@@ -20,12 +20,12 @@ To get started with the project, follow these steps:
 
 1. **Clone the Repository:** Clone this repository to your local development environment using the command:
    ```
-   git clone <repository-url>
+   git clone https://github.com/AhmedHafez13/uptime-monitoring-bosta
    ```
 
 2. **Install Dependencies:** Navigate to the project directory and install the required dependencies using npm:
    ```
-   cd uptime-monitoring-api
+   cd uptime-monitoring-bosta
    npm install
    ```
 
@@ -38,7 +38,7 @@ To get started with the project, follow these steps:
 
 ## API Documentation
 
-The detailed API documentation can be found in the [API_DOCS.md](API_DOCS.md) file. This documentation provides information about available endpoints, request/response formats, and authentication.
+The detailed API documentation can be found in the [API Docs.md](Development/API Docs.md) file. This documentation provides information about available endpoints, request/response formats, and authentication.
 
 ## Credits
 
