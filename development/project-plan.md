@@ -150,7 +150,7 @@ uptime-monitoring-bosta/
 │   ├── todos.md
 │   └── screenshots/
 ├── src/
-│   ├── app.js
+│   ├── app.ts
 │   ├── routes/
 │   ├── controllers/
 │   ├── models/
@@ -160,12 +160,18 @@ uptime-monitoring-bosta/
 │   ├── plugins/
 │   ├── tests/
 │   └── ...
+├── types/
+│   ├── ...
+│   └── ...
 ├── docker/
 │   ├── backend.Dockerfile
 │   ├── mongo.Dockerfile
 │   └── docker-compose.yml
 ├── .git
 ├── .gitignore
+├── backend.Dockerfile
+├── mongo.Dockerfile
+├── docker-compose.yml
 └── README.md
 ```
 
@@ -191,14 +197,16 @@ uptime-monitoring-bosta/
   - `config/`: Contains configuration files.
   - `tests/`: Contains unit and integration tests.
 
-- `docker/`: Contains Docker-related files for containerization.
-
-  - `backend.Dockerfile`: Dockerfile for the backend application.
-  - `mongo.Dockerfile`: Dockerfile for MongoDB.
-  - `docker-compose.yml`: Docker Compose file to orchestrate containers.
+- `types/`: Contains TypeScript type definitions for the application's modules, functions, and variables.
 
 - `.git`: Hidden folder for Git version control.
 
 - `.gitignore`: Specifies files and directories to ignore in version control.
+
+- `backend.Dockerfile`: Dockerfile for the backend application.
+
+- `mongo.Dockerfile`: Dockerfile for MongoDB.
+
+- `docker-compose.yml`: Docker Compose file to orchestrate containers.
 
 - `README.md`: Main README file that provides an overview of the project, setup instructions, and other important information.

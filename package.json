@@ -1,0 +1,42 @@
+{
+  "name": "uptime-monitoring-bosta",
+  "version": "1.0.0",
+  "description": "Welcome to the Uptime Monitoring RESTful API project! This repository contains the backend implementation of an uptime monitoring system that allows authenticated users to monitor URLs and receive detailed uptime reports. This project is developed as part of an assessment for a Backend Engineer position.",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedHafez13/uptime-monitoring-bosta.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedHafez13/uptime-monitoring-bosta/issues"
+  },
+  "homepage": "https://github.com/AhmedHafez13/uptime-monitoring-bosta#readme",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.17",
+    "@types/mongoose": "^5.11.97",
+    "@types/nodemailer": "^6.4.9",
+    "@types/passport": "^1.0.12",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.4",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  }
+}
