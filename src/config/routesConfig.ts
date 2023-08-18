@@ -1,23 +1,31 @@
 import express from 'express';
 import userRoutes from '../routes/userRoutes';
 import urlRoutes from '../routes/urlRoutes';
+import authRoutes from '../routes/authRoutes';
 import { NotFoundError } from '../middleware/errorHandler';
 
-const configureRoutes = (app: express.Application) => {
-  // API routes
-  app.use('/api/users', userRoutes);
-  app.use('/api/urls', urlRoutes);
+class RoutesConfig {
+  constructor(private app: express.Application) {
+    this.configureRoutes();
+  }
 
-  // Home route [TODO: TEST/REMOVE]
-  app.get('/', (req, res) => {
-    res.send('Hello, World!');
-  });
+  private configureRoutes() {
+    // API routes
+    this.app.use('/api/users', userRoutes);
+    this.app.use('/api/urls', urlRoutes);
+    this.app.use('/api/auth', authRoutes);
 
-  // Catch-all route handler for 404 Not Found errors
-  app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const error = new NotFoundError('Route not found'); // TODO: TRANS
-    next(error);
-  });
-};
+    // Home route [TODO: TEST/REMOVE]
+    this.app.get('/', (req, res) => {
+      res.send('Hello, World!');
+    });
 
-export default configureRoutes;
+    // Catch-all route handler for 404 Not Found errors
+    this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+      const error = new NotFoundError('Route not found'); // TODO: TRANS
+      next(error);
+    });
+  }
+}
+
+export default RoutesConfig;

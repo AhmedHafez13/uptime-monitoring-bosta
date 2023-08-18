@@ -1,7 +1,9 @@
 import express from 'express';
-import { config } from 'dotenv';
+import passport from 'passport';
 import connectToDatabase from './config/dbConfig';
-import configureRoutes from './config/routesConfig';
+import RoutesConfig from './config/routesConfig';
+import PassportConfig from './config/passportConfig';
+import { config } from 'dotenv';
 import { errorHandler } from './middleware/errorHandler';
 
 config();
@@ -12,9 +14,13 @@ connectToDatabase();
 
 // Middleware
 app.use(express.json());
+app.use(passport.initialize());
 
-// Routes
-configureRoutes(app);
+// Initialize Passport configuration
+new PassportConfig();
+
+// Configure routes
+new RoutesConfig(app);
 
 // Error handling middleware
 app.use(errorHandler);

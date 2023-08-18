@@ -62,3 +62,9 @@
 
 23. Update the README.md file with any changes made during development.
 24. Document any additional configurations required for deploying in a production environment.
+
+
+## Enhancements:
+
+- Add translation files to separate text from code. Search from (TODO: TRANS).
+- Add better validations while signing up a new user.
