@@ -153,6 +153,7 @@ uptime-monitoring-bosta/
 │   ├── app.ts
 │   ├── routes/
 │   ├── controllers/
+│   ├── middleware/
 │   ├── models/
 │   ├── config/
 │   ├── services/
@@ -187,14 +188,17 @@ uptime-monitoring-bosta/
 
 - `src/`: Contains the actual source code of your application.
 
-  - `app.js`: Entry point of the application.
-  - `routes/`: Contains route definitions.
+  - `app.ts`: Entry point of the application.
+  - `config/`: Contains configuration files.
+    - `dbConfig.ts`: Contains the database configurations.
+    - `routesConfig.ts`: Contains the routes configurations.
   - `controllers/`: Contains controller logic for routes.
+  - `middleware/`: Contains middleware logic.
   - `models/`: Contains data models.
-  - `services/`: Provides core functionalities of your application. This is where the business logic can reside.
   - `notifications/`: Each notification channel (email, webhook, etc.) can have its own module within this directory.
   - `plugins/`: This directory can hold modules that can be dynamically loaded into your application.
-  - `config/`: Contains configuration files.
+  - `routes/`: Contains route definitions.
+  - `services/`: Provides core functionalities of your application. This is where the business logic can reside.
   - `tests/`: Contains unit and integration tests.
 
 - `types/`: Contains TypeScript type definitions for the application's modules, functions, and variables.
