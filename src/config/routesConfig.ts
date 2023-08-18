@@ -1,7 +1,7 @@
 import express from 'express';
-import userRoutes from './routes/userRoutes';
-import urlRoutes from './routes/urlRoutes';
-import { NotFoundError } from './middleware/errorHandler';
+import userRoutes from '../routes/userRoutes';
+import urlRoutes from '../routes/urlRoutes';
+import { NotFoundError } from '../middleware/errorHandler';
 
 const configureRoutes = (app: express.Application) => {
   // API routes
