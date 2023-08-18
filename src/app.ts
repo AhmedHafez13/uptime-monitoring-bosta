@@ -1,12 +1,23 @@
 import express from 'express';
 import { config } from 'dotenv';
+import connectToDatabase from './dbConfig';
+import configureRoutes from './routesConfig';
+import { errorHandler } from './middleware/errorHandler';
 
 config();
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+// Connect to the database
+connectToDatabase();
+
+// Middleware
+app.use(express.json());
+
+// Routes
+configureRoutes(app);
+
+// Error handling middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
