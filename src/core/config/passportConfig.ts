@@ -23,7 +23,9 @@ class PassportConfig {
             const user = await UserModel.findOne({ email });
 
             if (!user || !user.comparePassword(password)) {
-              return done(null, false, { message: 'Incorrect email or password' });
+              return done(null, false, {
+                message: 'Incorrect email or password',
+              });
             }
 
             return done(null, user);

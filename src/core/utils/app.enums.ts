@@ -1,4 +1,4 @@
 export enum StatusEnum {
   Up = 'up',
-  Down = 'down'
+  Down = 'down',
 }

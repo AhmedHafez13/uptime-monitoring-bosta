@@ -35,7 +35,9 @@ class UrlController {
 
       // Validate required fields
       if (!url || !protocol || !name) {
-        return res.status(400).json({ error: 'URL, protocol, and name are required fields' }); // TODO: TRANS
+        return res
+          .status(400)
+          .json({ error: 'URL, protocol, and name are required fields' }); // TODO: TRANS
       }
 
       const newData: UrlAttributes = {
@@ -64,9 +66,15 @@ class UrlController {
       // Schedule a job for the URL
       CronJobService.scheduleUrlChecks(result);
 
-      res.status(201).json({ message: 'Operation completed successfully', url: result }); // TODO: TRANS
+      res
+        .status(201)
+        .json({ message: 'Operation completed successfully', url: result }); // TODO: TRANS
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred during the operation, ' + error.message }); // TODO: TRANS
+      res
+        .status(500)
+        .json({
+          error: 'An error occurred during the operation, ' + error.message,
+        }); // TODO: TRANS
     }
   }
 
@@ -96,7 +104,9 @@ class UrlController {
         }
 
         // Perform update
-        const updatedUrl = await UrlModel.findByIdAndUpdate(urlId, data, { new: true });
+        const updatedUrl = await UrlModel.findByIdAndUpdate(urlId, data, {
+          new: true,
+        });
 
         return updatedUrl;
       }
@@ -119,7 +129,9 @@ class UrlController {
 
       res.json({ urlDetails });
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred while fetching URL details' }); // TODO: TRANS
+      res
+        .status(500)
+        .json({ error: 'An error occurred while fetching URL details' }); // TODO: TRANS
     }
   }
 
@@ -152,7 +164,11 @@ class UrlController {
 
       res.json({ message: 'URL deleted successfully' }); // TODO: TRANS
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred while deleting URL, ' + error.message }); // TODO: TRANS
+      res
+        .status(500)
+        .json({
+          error: 'An error occurred while deleting URL, ' + error.message,
+        }); // TODO: TRANS
     }
   }
 

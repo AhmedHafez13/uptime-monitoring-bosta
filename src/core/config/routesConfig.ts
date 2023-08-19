@@ -22,10 +22,16 @@ class RoutesConfig {
     });
 
     // Catch-all route handler for 404 Not Found errors
-    this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-      const error = new NotFoundError('Route not found'); // TODO: TRANS
-      next(error);
-    });
+    this.app.use(
+      (
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) => {
+        const error = new NotFoundError('Route not found'); // TODO: TRANS
+        next(error);
+      }
+    );
   }
 }
 

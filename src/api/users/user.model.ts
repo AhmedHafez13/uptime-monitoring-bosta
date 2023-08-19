@@ -40,7 +40,9 @@ userSchema.pre<UserDocument>('save', async function (next) {
 });
 
 // Define the comparePassword method to validate passwords
-userSchema.methods.comparePassword = async function (candidatePassword: string) {
+userSchema.methods.comparePassword = async function (
+  candidatePassword: string
+) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 

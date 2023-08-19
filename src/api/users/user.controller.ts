@@ -4,11 +4,11 @@ import UserModel from './user.model';
 const UserController = {
   signup: async (req: Request, res: Response) => {
     // Handle user signup logic here
-    res.send({data: 'user/signup is working!'});
+    res.send({ data: 'user/signup is working!' });
   },
   login: async (req: Request, res: Response) => {
     // Handle user login logic here
-    res.send({data: 'user/login is working!'});
+    res.send({ data: 'user/login is working!' });
   },
 };
 
