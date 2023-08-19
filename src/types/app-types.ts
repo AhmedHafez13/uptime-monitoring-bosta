@@ -1,4 +1,4 @@
-export type UrlStatus = "up" | "down";
+export type UrlStatus = 'up' | 'down';
 
 export type UrlAttributes = {
   availability: number;
@@ -10,6 +10,6 @@ export type UrlAttributes = {
 
 export type UrlCheckHistoryItem = {
   timestamp: Date;
-  status: "up" | "down";
+  status: 'up' | 'down';
   responseTime: number;
 };

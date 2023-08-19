@@ -198,6 +198,7 @@ uptime-monitoring-bosta/
   - `core/`: Core components and configuration.
 
     - `config/`: Directory for configuration files.
+
       - `dbConfig.ts`: Configuration settings for the database.
       - `routesConfig.ts`: Configuration of routes and middleware.
 
@@ -209,6 +210,7 @@ uptime-monitoring-bosta/
   - `api/`: API modules organized by functionality.
 
     - `first-module/`: First module of the API.
+
       - `first-module.controllers.ts`: Controllers for route handling.
       - `first-module.models.ts`: Data models specific to this module.
       - `first-module.routes.ts`: Route definitions.
@@ -235,3 +237,30 @@ uptime-monitoring-bosta/
 - `docker-compose.yml`: Docker Compose file for orchestrating containers.
 
 - `README.md`: Main README file providing an overview of the project, setup instructions, and important information.
+
+## Model Structure (using Mongoose)
+
+Models is divided into components like schema, document interface, model interface, and attributes interface to match the common practice in object-relational mapping (ORM) libraries.
+
+1. **Schema**:
+
+   - The schema defines the structure of the data model.
+   - It specifies the fields, their types, validation rules, default values, and more.
+   - Schemas provide a blueprint for how the data should be stored in the database.
+
+2. **Document Interface**:
+
+   - A document is an instance of a data model that represents a record in the database.
+   - Extends the schema definition and provides additional methods and properties that are specific to individual document instances.
+   - Used for interacting with data in a more object-oriented way, enabling to work with documents as JavaScript objects.
+
+3. **Model Interface**:
+
+   - The model interface is an abstraction over the database collection that corresponds to the data model.
+   - Provides methods for performing CRUD (Create, Read, Update, Delete) operations on the database.
+   - Allows to query the database, create new documents, update existing ones, and more. They encapsulate database interactions and provide a cleaner and more organized way to manage data.
+
+4. **Attributes Interface**:
+   - An interface defines the structure of the attributes that can be assigned to a new document before it's created.
+   - It's used mainly in the application code when creating new documents or updating existing ones.
+   - Helps ensure that you're providing valid data when creating or updating documents.

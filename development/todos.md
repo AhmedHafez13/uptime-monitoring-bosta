@@ -46,10 +46,42 @@
 
 5. `[IN_PROGRESS]` Design and implement uptime reports generation based on checked URLs.
 
+   1. Scheduling the URLs Checks
+
+      - Schedule check jobs or all URLs once the server starts.
+      - Schedule a URL check after creating a new URL.
+      - Update the job after updating a URL.
+      - Stop the job after deleting a URL.
+
+   2. Perform Url Check Functionality
+
+      - **Make the Request and Get the Response (`makeRequest` Function)**:
+
+        - Construct the request configuration using the `generateRequestConfig` function.
+        - Use `axios` to make a GET request to the URL.
+        - Capture the response for further processing.
+
+      - **Calculate the Response Time (`calculateResponseTime` Function)**:
+
+        - Calculate the difference between the start time (when the request was made) and the current time to determine the response time.
+
+      - **Store the Report Data (`storeReportData` Function)**:
+
+        - Store the report data, including the status, response time, and any other relevant information, in the database or perform further processing.
+
+   3. Calculations of the attributes
+
+      - `availability`: Calculate the percentage of successful polls (status = 'up') out of the total history length.
+      - `outages`: Count the number of times the status changed from 'up' to 'down' in the history.
+      - `downtime`: Sum the responseTime values for all instances where the status was 'down'.
+      - `uptime`: Calculate the total time the status was 'up' by summing the difference between consecutive 'up' statuses in the history.
+      - `responseTime`: Calculate the average responseTime for all polls in the history.
+
 ### Testing:
 
 6. Write unit tests using Jest for the implemented routes and controllers.
 7. Ensure routes return expected responses and handle errors appropriately.
+   - Check CORS.
 
 ### Documentation:
 
@@ -65,6 +97,8 @@
 
 12. Implement input validation and error handling for API requests.
 
+   - Validate the `ObjectId`s, should be valid MongoDB ids.
+
 ---
 
 ## Optional and Extra ToDos (Time Permitting):
@@ -79,7 +113,7 @@
 15. Set up a GitHub Actions workflow for Continuous Integration (CI) and Continuous Deployment (CD).
 16. Configure the workflow to run tests using Jest.
 17. Build Docker images and push them to a container registry (e.g., Docker Hub).
-18. Deploy the application to a test environment (e.g., your Ubuntu machine).
+18. Deploy the application to a test environment (e.g., Ubuntu machine).
 
 ### Integration Testing:
 
@@ -101,11 +135,24 @@
 
     - Consider the `.env` file.
     - Database initial config.
+    - Draw an ERD diagram to visualize the database structure.
 
 ## Enhancements:
 
 - Log requests to the console. Use an external package.
+- Move types to a centralized type file
+- Create a file for defaults (i.e. url check `interval`)
 - Create a response-unifying class with functions to handle all the responses and enhance the error handling.
 - Add translation files to separate text from code. Search from (TODO: TRANS).
 - Add better validations while signing up a new user.
 - Consider using external package for validations and translations.
+
+### url.controller
+
+- createUrl and updateUrl
+  - Transform the `protocol` to uppercase to match the enum in the model.
+
+
+### URL check cron jobs
+
+- Consider the `interval` values range.

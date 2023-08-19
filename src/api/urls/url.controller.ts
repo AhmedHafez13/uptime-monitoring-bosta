@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import UrlModel, { UrlAttributes } from './url.model';
 import { UserDocument } from '../users/user.model';
+import CronJobService from '../../core/services/cron-job.service';
+import UrlReportModel from '../url-reports/url-report.model';
 
 class UrlController {
   private static async handleUrlOperation(
@@ -58,6 +60,9 @@ class UrlController {
       if (!result) {
         return;
       }
+
+      // Schedule a job for the URL
+      CronJobService.scheduleUrlChecks(result);
 
       res.status(201).json({ message: 'Operation completed successfully', url: result }); // TODO: TRANS
     } catch (error) {
@@ -139,9 +144,15 @@ class UrlController {
         return;
       }
 
+      // Cancel the scheduled job for the URL
+      CronJobService.cancelUrlCheck(urlId);
+
+      // Delete the url report
+      await UrlReportModel.findOneAndDelete({ urlId });
+
       res.json({ message: 'URL deleted successfully' }); // TODO: TRANS
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred while deleting URL' }); // TODO: TRANS
+      res.status(500).json({ error: 'An error occurred while deleting URL, ' + error.message }); // TODO: TRANS
     }
   }
 
