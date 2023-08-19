@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import UrlModel, { UrlAttributes } from '../models/urlModel';
-import { UserDocument } from '../models/userModel';
+import UrlModel, { UrlAttributes } from './url.model';
+import { UserDocument } from '../users/user.model';
 
 class UrlController {
   private static async handleUrlOperation(

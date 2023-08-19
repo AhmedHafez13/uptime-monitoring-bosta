@@ -151,23 +151,29 @@ uptime-monitoring-bosta/
 │   └── screenshots/
 ├── src/
 │   ├── app.ts
-│   ├── routes/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── config/
-│   ├── services/
-│   ├── notifications/
-│   ├── plugins/
-│   ├── tests/
-│   └── ...
+│   ├── core/
+│   │   ├── config/
+│   │   ├── middleware/
+│   │   ├── notifications/
+│   │   ├── plugins/
+│   │   ├── services/
+│   │   └── ...
+│   ├── api/
+│   │   ├── first-module/
+│   │   │   ├── first-module.controllers.ts
+│   │   │   ├── first-module.models.ts
+│   │   │   ├── first-module.routes.ts
+│   │   │   ├── tests/
+│   │   │   └── ...
+│   │   ├── second-module/
+│   │   │   ├── second-module.controllers.ts
+│   │   │   ├── second-module.models.ts
+│   │   │   ├── second-module.routes.ts
+│   │   │   ├── tests/
+│   │   └── └── ...
 ├── types/
 │   ├── ...
 │   └── ...
-├── docker/
-│   ├── backend.Dockerfile
-│   ├── mongo.Dockerfile
-│   └── docker-compose.yml
 ├── .git
 ├── .gitignore
 ├── backend.Dockerfile

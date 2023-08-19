@@ -1,5 +1,5 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
-import UserModel, { UserDocument } from './userModel';
+import UserModel, { UserDocument } from '../users/user.model';
 
 export interface UrlAttributes {
   user: UserDocument['_id'];

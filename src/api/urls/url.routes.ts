@@ -1,6 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import UrlController from '../controllers/urlController';
+import UrlController from './url.controller';
 
 const router = express.Router();
 

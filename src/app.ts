@@ -1,10 +1,10 @@
 import express from 'express';
 import passport from 'passport';
-import connectToDatabase from './config/dbConfig';
-import RoutesConfig from './config/routesConfig';
-import PassportConfig from './config/passportConfig';
+import connectToDatabase from './core/config/dbConfig';
+import RoutesConfig from './core/config/routesConfig';
+import PassportConfig from './core/config/passportConfig';
 import { config } from 'dotenv';
-import { errorHandler } from './middleware/errorHandler';
+import { errorHandler } from './core/middleware/errorHandler';
 
 config();
 const app = express();

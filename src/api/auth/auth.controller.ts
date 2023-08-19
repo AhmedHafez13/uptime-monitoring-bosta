@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import UserModel, { UserDocument } from '../models/userModel';
-import { jwtConfig } from '../config/jwtConfig';
+import UserModel, { UserDocument } from '../users/user.model';
+import { jwtConfig } from '../../core/config/jwtConfig';
 
 class AuthController {
   async signup(req: Request, res: Response) {

@@ -1,7 +1,7 @@
 import express from 'express';
-import userRoutes from '../routes/userRoutes';
-import urlRoutes from '../routes/urlRoutes';
-import authRoutes from '../routes/authRoutes';
+import userRoutes from '../../api/users/user.routes';
+import urlRoutes from '../../api/urls/url.routes';
+import authRoutes from '../../api/auth/auth.routes';
 import { NotFoundError } from '../middleware/errorHandler';
 import { isAuthenticated } from '../middleware/authMiddleware';
 

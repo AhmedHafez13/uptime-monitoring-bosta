@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserModel from '../models/userModel';
+import UserModel from './user.model';
 
 const UserController = {
   signup: async (req: Request, res: Response) => {
