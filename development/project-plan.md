@@ -186,37 +186,52 @@ uptime-monitoring-bosta/
 
 - `development/`: Contains documentation and planning files related to the project's development process.
 
-  - `api-docs.md`: API documentation file.
-  - `requirements.md`: Project requirements and specifications.
-  - `project-plan.md`: High-level project plan and architecture.
-  - `todos.md`: List of tasks to complete.
-  - `screenshots/`: A folder to store screenshots or visual aids related to your project.
+  - `api-docs.md`: Document that outlines the API specifications and usage.
+  - `requirements.md`: Document detailing the project's requirements and specifications.
+  - `project-plan.md`: High-level project plan, architecture, and milestones.
+  - `todos.md`: List of tasks and features to complete in the project.
+  - `screenshots/`: Directory for storing visual aids or screenshots related to the project.
 
 - `src/`: Contains the actual source code of your application.
 
   - `app.ts`: Entry point of the application.
-  - `config/`: Contains configuration files.
-    - `dbConfig.ts`: Contains the database configurations.
-    - `routesConfig.ts`: Contains the routes configurations.
-  - `controllers/`: Contains controller logic for routes.
-  - `middleware/`: Contains middleware logic.
-  - `models/`: Contains data models.
-  - `notifications/`: Each notification channel (email, webhook, etc.) can have its own module within this directory.
-  - `plugins/`: This directory can hold modules that can be dynamically loaded into your application.
-  - `routes/`: Contains route definitions.
-  - `services/`: Provides core functionalities of your application. This is where the business logic can reside.
-  - `tests/`: Contains unit and integration tests.
+  - `core/`: Core components and configuration.
+
+    - `config/`: Directory for configuration files.
+      - `dbConfig.ts`: Configuration settings for the database.
+      - `routesConfig.ts`: Configuration of routes and middleware.
+
+    - `middleware/`: Middleware logic for request handling.
+    - `notifications/`: Modules for various notification channels (email, webhook, etc.).
+    - `plugins/`: Modules that can be dynamically loaded into the application.
+    - `services/`: Core functionalities and business logic of the application.
+
+  - `api/`: API modules organized by functionality.
+
+    - `first-module/`: First module of the API.
+      - `first-module.controllers.ts`: Controllers for route handling.
+      - `first-module.models.ts`: Data models specific to this module.
+      - `first-module.routes.ts`: Route definitions.
+      - `tests/`: Unit and integration tests for this module.
+
+    - `second-module/`: Second module of the API.
+      - `second-module.controllers.ts`: Controllers for route handling.
+      - `second-module.models.ts`: Data models specific to this module.
+      - `second-module.routes.ts`: Route definitions.
+      - `tests/`: Unit and integration tests for this module.
+
+  - `models/`: Contains data models shared across multiple modules.
+  - `routes/`: Contains route definitions for the application.
+  - `tests/`: Unit and integration tests for the entire application.
 
 - `types/`: Contains TypeScript type definitions for the application's modules, functions, and variables.
 
-- `.git`: Hidden folder for Git version control.
-
+- `.git/`: Hidden folder for Git version control.
 - `.gitignore`: Specifies files and directories to ignore in version control.
 
-- `backend.Dockerfile`: Dockerfile for the backend application.
+- `backend.Dockerfile`: Dockerfile for building the backend application.
+- `mongo.Dockerfile`: Dockerfile for setting up MongoDB.
 
-- `mongo.Dockerfile`: Dockerfile for MongoDB.
+- `docker-compose.yml`: Docker Compose file for orchestrating containers.
 
-- `docker-compose.yml`: Docker Compose file to orchestrate containers.
-
-- `README.md`: Main README file that provides an overview of the project, setup instructions, and other important information.
+- `README.md`: Main README file providing an overview of the project, setup instructions, and important information.
