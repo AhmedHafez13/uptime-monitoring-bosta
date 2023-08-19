@@ -5,9 +5,45 @@
 ### Backend Development:
 
 1. Create an Express.js project structure.
+
 2. Implement user authentication using Passport.js (local strategy).
+
 3. Set up routes and controllers for user signup and signin.
+
 4. Implement URL checks CRUD operations as described in the task description.
+
+   1. **Create URL Check (`createUrl` in `urlController.ts`):**
+
+      - Receive the URL to be checked in the request body.
+      - Perform validation on the input data.
+      - Create a new URL check record in the database.
+      - Return a success response with the created URL check details.
+
+   2. **Get URL Check Details (`getUrlDetails` in `urlController.ts`):**
+
+      - Receive the URL check ID as a route parameter.
+      - Find the corresponding URL check in the database.
+      - Return the URL check details in the response.
+
+   3. **Update URL Check (`updateUrl` in `urlController.ts`):**
+
+      - Receive the URL check ID as a route parameter.
+      - Receive updated URL check data in the request body.
+      - Find the corresponding URL check in the database.
+      - Update the URL check data with the new values.
+      - Return a success response with the updated URL check details.
+
+   4. **Delete URL Check (`deleteUrl` in `urlController.ts`):**
+
+      - Receive the URL check ID as a route parameter.
+      - Find the corresponding URL check in the database.
+      - Delete the URL check record.
+      - Return a success response.
+
+   5. **Get All URL Checks (`getAllUrls` in `urlController.ts`):**
+      - Retrieve all URL check records from the database.
+      - Return a list of URL check details in the response.
+
 5. Design and implement uptime reports generation based on checked URLs.
 
 ### Testing:
@@ -63,8 +99,13 @@
 23. Update the README.md file with any changes made during development.
 24. Document any additional configurations required for deploying in a production environment.
 
+    - Consider the `.env` file.
+    - Database initial config.
 
 ## Enhancements:
 
+- Log requests to the console. Use an external package.
+- Create a response-unifying class with functions to handle all the responses and enhance the error handling.
 - Add translation files to separate text from code. Search from (TODO: TRANS).
 - Add better validations while signing up a new user.
+- Consider using external package for validations and translations.
