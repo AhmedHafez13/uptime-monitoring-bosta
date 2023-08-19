@@ -1,8 +1,7 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
-import UserModel, { UserDocument } from '../users/user.model';
 
 export interface UrlAttributes {
-  user: UserDocument['_id'];
+  user: mongoose.Types.ObjectId;
   name: string;
   url: string;
   protocol: 'HTTP' | 'HTTPS' | 'TCP';
@@ -28,6 +27,7 @@ interface UrlModel extends Model<UrlDocument> {}
 
 export interface UrlDocument extends Document, UrlAttributes {
   // Additional methods or virtuals if needed
+  fullUrl: string;
 }
 
 const urlSchema: Schema<UrlDocument, UrlModel> = new mongoose.Schema(
@@ -39,8 +39,8 @@ const urlSchema: Schema<UrlDocument, UrlModel> = new mongoose.Schema(
     path: { type: String },
     port: { type: Number },
     webhook: { type: String },
-    timeout: { type: Number, default: 5000 },
-    interval: { type: Number, default: 600000 },
+    timeout: { type: Number, default: 5000 }, // in milliseconds
+    interval: { type: Number, default: 600 }, // in seconds
     threshold: { type: Number, default: 1 },
     authentication: {
       username: { type: String },
@@ -53,8 +53,18 @@ const urlSchema: Schema<UrlDocument, UrlModel> = new mongoose.Schema(
     tags: [{ type: String }],
     ignoreSSL: { type: Boolean, default: false },
   },
-  { timestamps: true } // Adds createdAt and updatedAt fields
+  { timestamps: true }
 );
+
+// Define the virtual property 'fullUrl'
+urlSchema.virtual('fullUrl').get(function () {
+  const protocol = this.protocol.toLowerCase();
+  const host = this.url;
+  const path = this.path || '';
+  const port = this.port ? `:${this.port.toString().toLowerCase()}` : '';
+
+  return `${protocol}://${host}${port}${path}`;
+});
 
 const UrlModel = mongoose.model<UrlDocument, UrlModel>('Url', urlSchema);
 
