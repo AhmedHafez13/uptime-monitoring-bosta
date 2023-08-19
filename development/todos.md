@@ -4,13 +4,13 @@
 
 ### Backend Development:
 
-1. Create an Express.js project structure.
+1. `[DONE]` Create an Express.js project structure.
 
-2. Implement user authentication using Passport.js (local strategy).
+2. `[DONE]` Implement user authentication using Passport.js (local strategy).
 
-3. Set up routes and controllers for user signup and signin.
+3. `[DONE]` Set up routes and controllers for user signup and signin.
 
-4. Implement URL checks CRUD operations as described in the task description.
+4. `[DONE]` Implement URL checks CRUD operations as described in the task description.
 
    1. **Create URL Check (`createUrl` in `urlController.ts`):**
 
@@ -44,7 +44,7 @@
       - Retrieve all URL check records from the database.
       - Return a list of URL check details in the response.
 
-5. Design and implement uptime reports generation based on checked URLs.
+5. `[IN_PROGRESS]` Design and implement uptime reports generation based on checked URLs.
 
 ### Testing:
 
@@ -59,7 +59,7 @@
 ### Authentication and Authorization:
 
 10. Secure routes using authentication middleware.
-11. Implement authorization to ensure users can only access their own URL checks.
+11. `[DONE]` Implement authorization to ensure users can only access their own URL checks.
 
 ### Validation:
 
