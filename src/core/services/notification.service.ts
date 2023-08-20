@@ -1,6 +1,6 @@
 import {
   NotificationChannel,
-  NotificationConfig,
+  NotificationOptions,
 } from '../notifications/notifications.types';
 
 class NotificationService {
@@ -26,9 +26,9 @@ class NotificationService {
     }
   }
 
-  async sendNotification(message: string, config?: NotificationConfig) {
+  async sendNotification(message: string, options?: NotificationOptions) {
     for (const channel of this.channels) {
-      await channel.sendNotification(message, config);
+      await channel.sendNotification(message, options);
     }
   }
 }

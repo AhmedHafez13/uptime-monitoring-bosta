@@ -1,8 +1,9 @@
-export interface NotificationConfig {
+export interface NotificationOptions {
   email?: string;
   title?: string;
+  webhookUrl?: string;
 }
 
 export interface NotificationChannel {
-  sendNotification(message: string, config?: NotificationConfig): Promise<void>;
+  sendNotification(message: string, options?: NotificationOptions): Promise<void>;
 }

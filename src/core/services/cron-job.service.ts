@@ -54,6 +54,7 @@ class CronJobService {
               {
                 email: userEmail,
                 title: `[Alert] ${url.name} is Down!`, // TODO: TRANS
+                webhookUrl: url.webhook,
               }
             );
           }
