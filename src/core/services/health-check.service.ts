@@ -13,7 +13,7 @@ class HealthCheckService {
    * Perform a health check on a URL.
    *
    * @param urlData The URL document to be checked.
-   * @returns An object containing the status and response time.
+   * @returns An object containing the status, response time, and the updated report.
    */
   async performUrlCheck(urlData: UrlDocument) {
     const startTime = Date.now();
@@ -179,7 +179,7 @@ class HealthCheckService {
         ],
       };
 
-      return UrlReportModel.findByIdAndUpdate(urlReport, updatedUrlReport, {
+      return UrlReportModel.findByIdAndUpdate(urlReport._id, updatedUrlReport, {
         new: true,
       });
     } else {
