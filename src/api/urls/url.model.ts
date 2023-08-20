@@ -23,12 +23,12 @@ export interface UrlAttributes {
   ignoreSSL?: boolean;
 }
 
-interface UrlModel extends Model<UrlDocument> {}
-
 export interface UrlDocument extends Document, UrlAttributes {
   // Additional methods or virtuals if needed
   fullUrl: string;
 }
+
+interface UrlModel extends Model<UrlDocument> {}
 
 const urlSchema: Schema<UrlDocument, UrlModel> = new mongoose.Schema(
   {

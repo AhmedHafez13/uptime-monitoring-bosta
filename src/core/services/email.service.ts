@@ -28,6 +28,13 @@ class EmailService {
       console.error('Error sending email:', error);
     }
   }
+
+  async sendVerificationEmail(userEmail: string, token: string) {
+    const verificationLink = `https://${process.env.DOMAIN_NAME}/verify-email?token=${token}`;
+    const emailContent = `Click the following link to verify your email: ${verificationLink}`;
+
+    await this.sendEmail(userEmail, 'Email Verification', emailContent);
+  }
 }
 
 export default new EmailService();

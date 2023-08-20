@@ -13,12 +13,12 @@ export interface UrlReportAttributes {
   history: UrlCheckHistoryItem[];
 }
 
-interface UrlReportModel extends Model<UrlReportDocument> {
-  // Define custom methods if needed
-}
-
 export interface UrlReportDocument extends Document, UrlReportAttributes {
   // Define custom methods or virtuals if needed
+}
+
+interface UrlReportModel extends Model<UrlReportDocument> {
+  // Define custom methods if needed
 }
 
 const urlReportSchema: Schema<UrlReportDocument, UrlReportModel> =

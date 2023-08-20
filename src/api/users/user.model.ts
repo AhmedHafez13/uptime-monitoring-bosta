@@ -6,11 +6,7 @@ export interface UserAttributes {
   username: string;
   email: string;
   password: string;
-}
-
-// Define methods and virtuals
-interface UserModel extends Model<UserDocument> {
-  // Define custom methods if needed
+  isEmailVerified: boolean;
 }
 
 export interface UserDocument extends Document, UserAttributes {
@@ -18,11 +14,17 @@ export interface UserDocument extends Document, UserAttributes {
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
+// Define methods and virtuals
+interface UserModel extends Model<UserDocument> {
+  // Define custom methods if needed
+}
+
 const userSchema: Schema<UserDocument, UserModel> = new mongoose.Schema(
   {
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    isEmailVerified: { type: Boolean, default: false },
   },
   { timestamps: true } // Adds createdAt and updatedAt fields
 );
