@@ -64,17 +64,15 @@ class UrlController {
       }
 
       // Schedule a job for the URL
-      CronJobService.scheduleUrlChecks(result);
+      CronJobService.scheduleUrlChecks(result, (<UserDocument>req.user)?.email);
 
       res
         .status(201)
         .json({ message: 'Operation completed successfully', url: result }); // TODO: TRANS
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          error: 'An error occurred during the operation, ' + error.message,
-        }); // TODO: TRANS
+      res.status(500).json({
+        error: 'An error occurred during the operation, ' + error.message,
+      }); // TODO: TRANS
     }
   }
 
@@ -164,11 +162,9 @@ class UrlController {
 
       res.json({ message: 'URL deleted successfully' }); // TODO: TRANS
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          error: 'An error occurred while deleting URL, ' + error.message,
-        }); // TODO: TRANS
+      res.status(500).json({
+        error: 'An error occurred while deleting URL, ' + error.message,
+      }); // TODO: TRANS
     }
   }
 

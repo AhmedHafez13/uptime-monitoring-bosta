@@ -1,4 +1,7 @@
-import { NotificationChannel } from '../notifications/notifications.types';
+import {
+  NotificationChannel,
+  NotificationConfig,
+} from '../notifications/notifications.types';
 
 class NotificationService {
   private static instance: NotificationService;
@@ -23,9 +26,9 @@ class NotificationService {
     }
   }
 
-  async sendNotification(message: string) {
+  async sendNotification(message: string, config?: NotificationConfig) {
     for (const channel of this.channels) {
-      await channel.sendNotification(message);
+      await channel.sendNotification(message, config);
     }
   }
 }

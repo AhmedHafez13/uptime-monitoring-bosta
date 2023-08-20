@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import { UrlDocument } from '../../api/urls/url.model';
 import healthCheckService from './health-check.service';
 import NotificationService from './notification.service';
+import { StatusEnum } from '../utils/app.enums';
 
 const defaultValues = {
   defaultInterval: 600000,
@@ -20,7 +21,7 @@ class CronJobService {
     return CronJobService.instance;
   }
 
-  scheduleUrlChecks(url: UrlDocument) {
+  scheduleUrlChecks(url: UrlDocument, userEmail: string) {
     if (this.scheduledJobs[url._id.toString()]) {
       // If job already exists, cancel it and reschedule
       this.cancelUrlCheck(url._id.toString());
@@ -30,25 +31,43 @@ class CronJobService {
 
     // Schedule the check function to run at the specified interval
     const job = cron.schedule(`*/${intervalInSeconds} * * * * *`, async () => {
-      console.log('====================================');
-      console.log(`Checking ${url.fullUrl}`); // TODO: REMOVE LOGS
-      console.log('====================================');
+      console.log('================='); // TODO: REMOVE LOGS
+      console.log(`Checking ${url.fullUrl}`);
+
       const result = await healthCheckService.performUrlCheck(url);
 
-      // TODO: handle notifications and sockets here
-      console.log('====================================');
-      console.log(`${result.status} ${url.fullUrl}`); // TODO: REMOVE LOGS
-      console.log('====================================');
+      console.log('================='); // TODO: REMOVE LOGS
+      console.log(`${result.status} ${url.fullUrl}`);
 
-      await NotificationService.sendNotification(`${result.status} ${url.fullUrl}`);
+      if (result.status === StatusEnum.Down && result.urlReport) {
+        const history = result.urlReport.history;
+        const threshold = url.threshold || 1; // TODO: MOVE TO CENTRALIZED DEFAULTS
+
+        if (history.length >= threshold) {
+          const isAllDown = history
+            .slice(-threshold)
+            .every((item) => item.status === StatusEnum.Down);
+
+          if (isAllDown) {
+            await NotificationService.sendNotification(
+              `${result.status} ${url.fullUrl}`,
+              {
+                email: userEmail,
+                title: `[Alert] ${url.name} is Down!`, // TODO: TRANS
+              }
+            );
+          }
+        }
+      }
+
+      // TODO: handle sockets ...
     });
 
     // Start the newly created job
     job.start();
 
-    console.log('====================================');
-    console.log(`A new job stared for ${url.fullUrl}`); // TODO: REMOVE LOGS
-    console.log('====================================');
+    console.log('================='); // TODO: REMOVE LOGS
+    console.log(`A new job stared for ${url.fullUrl}`);
 
     // Store the job in the scheduledJobs object
     this.scheduledJobs[url._id.toString()] = job;
@@ -58,9 +77,9 @@ class CronJobService {
     if (this.scheduledJobs[urlId]) {
       this.scheduledJobs[urlId].stop();
       delete this.scheduledJobs[urlId];
-      console.log('====================================');
-      console.log(`Url of id ${urlId} is canceled`); // TODO: REMOVE LOGS
-      console.log('====================================');
+
+      console.log('================='); // TODO: REMOVE LOGS
+      console.log(`Url check of id ${urlId} is canceled`);
     }
   }
 

@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { UrlDocument } from '../../api/urls/url.model';
-import UrlReportModel from '../../api/url-reports/url-report.model';
+import UrlReportModel, {
+  UrlReportDocument,
+} from '../../api/url-reports/url-report.model';
 import {
   UrlAttributes,
   UrlCheckHistoryItem,
@@ -15,7 +17,11 @@ class HealthCheckService {
    * @param urlData The URL document to be checked.
    * @returns An object containing the status, response time, and the updated report.
    */
-  async performUrlCheck(urlData: UrlDocument) {
+  async performUrlCheck(urlData: UrlDocument): Promise<{
+    status: UrlStatus;
+    responseTime: number;
+    urlReport: UrlReportDocument | null;
+  }> {
     const startTime = Date.now();
 
     // Get the report history

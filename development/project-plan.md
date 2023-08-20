@@ -264,3 +264,8 @@ Models is divided into components like schema, document interface, model interfa
    - An interface defines the structure of the attributes that can be assigned to a new document before it's created.
    - It's used mainly in the application code when creating new documents or updating existing ones.
    - Helps ensure that you're providing valid data when creating or updating documents.
+
+## Deploy Considerations
+
+- **Email service**:
+  - SMTP server should be configured on the machine.
