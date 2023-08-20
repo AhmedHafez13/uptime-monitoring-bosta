@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import EmailVerificationModel from './email-verification.model';
+import { VerificationTokenData } from './auth.types';
 import UserModel, { UserDocument } from '../users/user.model';
 import { jwtConfig } from '../../core/config/jwtConfig';
 import EmailService from '../../core/services/email.service';
@@ -27,29 +27,19 @@ class AuthController {
       await newUser.save();
 
       // Generate an email verification token
-      const verificationToken = jwt.sign(
-        { sub: newUser._id },
-        jwtConfig.secretKey,
-        {
-          expiresIn: jwtConfig.verificationTokenExpireTime,
-        }
-      );
-
-      // Save the email verification record
-      const emailVerificationRecord = new EmailVerificationModel({
-        userId: newUser._id,
-        token: verificationToken,
+      const userData: VerificationTokenData = { userId: newUser._id };
+      const verificationToken = jwt.sign(userData, jwtConfig.secretKey, {
+        expiresIn: jwtConfig.emailVerificationExpiration,
       });
-      await emailVerificationRecord.save();
 
       // Send the verification email with the token
       EmailService.sendVerificationEmail(newUser.email, verificationToken);
 
       res
         .status(201)
-        .json({ message: 'User registered successfully', verificationToken });
+        .json({ message: 'User registered successfully', verificationToken }); // TODO: TRANS
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred during signup' });
+      res.status(500).json({ error: 'An error occurred during signup' }); // TODO: TRANS
     }
   }
 
@@ -78,7 +68,7 @@ class AuthController {
           }
 
           if (!user.isEmailVerified) {
-            return res.status(403).json({ error: 'Email is not verified' });
+            return res.status(403).json({ error: 'Email is not verified' }); // TODO: TRANS
           }
 
           try {
@@ -97,7 +87,7 @@ class AuthController {
               }
 
               const token = jwt.sign({ sub: user._id }, jwtConfig.secretKey, {
-                expiresIn: jwtConfig.authTokenExpireTime,
+                expiresIn: jwtConfig.authTokenExpiration,
               });
               res.json({ user, token });
             });
@@ -118,37 +108,42 @@ class AuthController {
       const { token } = req.query;
 
       if (!token) {
-        return res.status(400).json({ error: 'Verification token is required' });
+        return res
+          .status(400)
+          .json({ error: 'Verification token is required' }); // TODO: TRANS
       }
 
-      // Find the email verification record by token
-      const verificationRecord = await EmailVerificationModel.findOne({
-        token,
-      });
+      try {
+        const decodedToken = jwt.verify(
+          token.toString(),
+          jwtConfig.secretKey
+        ) as VerificationTokenData;
 
-      if (!verificationRecord) {
-        return res.status(404).json({ error: 'Invalid verification token' });
+        if (!decodedToken.userId) {
+          return res
+            .status(400)
+            .json({ error: 'Invalid verification token format' }); // TODO: TRANS
+        }
+
+        // Find the user by userId
+        const user = await UserModel.findById(decodedToken.userId);
+
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' }); // TODO: TRANS
+        }
+
+        // Mark the user's email as verified
+        user.isEmailVerified = true;
+        await user.save();
+
+        return res.json({ message: 'Email verification successful' }); // TODO: TRANS
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid verification token' }); // TODO: TRANS
       }
-
-      // Find the user associated with the verification record
-      const user = await UserModel.findById(verificationRecord.userId);
-
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-
-      // Mark the user's email as verified
-      user.isEmailVerified = true;
-      await user.save();
-
-      // Delete the email verification record
-      await verificationRecord.deleteOne();
-
-      return res.json({ message: 'Email verification successful' });
     } catch (error) {
-      res
+      return res
         .status(500)
-        .json({ error: 'An error occurred during email verification' });
+        .json({ error: 'An error occurred during email verification' }); // TODO: TRANS
     }
   }
 }
