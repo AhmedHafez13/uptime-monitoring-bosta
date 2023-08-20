@@ -8,24 +8,27 @@
 
 2. `[DONE]` Implement user authentication using Passport.js (local strategy).
 
-3. `[DONE]` Set up routes and controllers for user signup and signin.
+3. Set up routes and controllers for user signup and signin.
+
+   - `[DONE]` Signup and Signin functionality (token-based authentication)
+   - Email verification
 
 4. `[DONE]` Implement URL checks CRUD operations as described in the task description.
 
-   1. **Create URL Check (`createUrl` in `urlController.ts`):**
+   1. **Create URL Check (`createUrl`):**
 
       - Receive the URL to be checked in the request body.
       - Perform validation on the input data.
       - Create a new URL check record in the database.
       - Return a success response with the created URL check details.
 
-   2. **Get URL Check Details (`getUrlDetails` in `urlController.ts`):**
+   2. **Get URL Check Details (`getUrlDetails`):**
 
       - Receive the URL check ID as a route parameter.
       - Find the corresponding URL check in the database.
       - Return the URL check details in the response.
 
-   3. **Update URL Check (`updateUrl` in `urlController.ts`):**
+   3. **Update URL Check (`updateUrl`):**
 
       - Receive the URL check ID as a route parameter.
       - Receive updated URL check data in the request body.
@@ -33,20 +36,20 @@
       - Update the URL check data with the new values.
       - Return a success response with the updated URL check details.
 
-   4. **Delete URL Check (`deleteUrl` in `urlController.ts`):**
+   4. **Delete URL Check (`deleteUrl`):**
 
       - Receive the URL check ID as a route parameter.
       - Find the corresponding URL check in the database.
       - Delete the URL check record.
       - Return a success response.
 
-   5. **Get All URL Checks (`getAllUrls` in `urlController.ts`):**
+   5. **Get All URL Checks (`getAllUrls`):**
       - Retrieve all URL check records from the database.
       - Return a list of URL check details in the response.
 
 5. `[IN_PROGRESS]` Design and implement uptime reports generation based on checked URLs.
 
-   1. Scheduling the URLs Checks
+   1. `[DONE]` Scheduling the URLs Checks
 
       - Schedule check jobs or all URLs once the server starts.
       - Schedule a URL check after creating a new URL.
@@ -55,27 +58,35 @@
 
    2. Perform Url Check Functionality
 
-      - **Make the Request and Get the Response (`makeRequest` Function)**:
+      - `[DONE]` **Make the Request and Get the Response**:
 
         - Construct the request configuration using the `generateRequestConfig` function.
         - Use `axios` to make a GET request to the URL.
         - Capture the response for further processing.
 
-      - **Calculate the Response Time (`calculateResponseTime` Function)**:
+      - **Handle `ignoreSSL`**:
+
+        - ?
+
+      - `[DONE]` **Calculate the Response Time**:
 
         - Calculate the difference between the start time (when the request was made) and the current time to determine the response time.
 
-      - **Store the Report Data (`storeReportData` Function)**:
+      - `[DONE]` **Store the Report Data**:
 
         - Store the report data, including the status, response time, and any other relevant information, in the database or perform further processing.
 
-   3. Calculations of the attributes
+   3. `[DONE]` Calculations of the attributes
 
       - `availability`: Calculate the percentage of successful polls (status = 'up') out of the total history length.
       - `outages`: Count the number of times the status changed from 'up' to 'down' in the history.
-      - `downtime`: Sum the responseTime values for all instances where the status was 'down'.
-      - `uptime`: Calculate the total time the status was 'up' by summing the difference between consecutive 'up' statuses in the history.
+      - `downtime`: Summing the difference between consecutive 'down' statuses in the history.
+      - `uptime`: Summing the difference between consecutive 'up' statuses in the history.
       - `responseTime`: Calculate the average responseTime for all polls in the history.
+
+   4. Handle Notifications and Sockets
+      - `[DONE]` Notifications
+      - Sockets
 
 ### Testing:
 
@@ -97,7 +108,7 @@
 
 12. Implement input validation and error handling for API requests.
 
-   - Validate the `ObjectId`s, should be valid MongoDB ids.
+- Validate the `ObjectId`s, should be valid MongoDB ids.
 
 ---
 
@@ -151,7 +162,6 @@
 
 - createUrl and updateUrl
   - Transform the `protocol` to uppercase to match the enum in the model.
-
 
 ### URL check cron jobs
 

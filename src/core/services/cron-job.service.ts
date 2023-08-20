@@ -1,6 +1,7 @@
 import cron from 'node-cron';
 import { UrlDocument } from '../../api/urls/url.model';
 import healthCheckService from './health-check.service';
+import NotificationService from './notification.service';
 
 const defaultValues = {
   defaultInterval: 600000,
@@ -38,6 +39,8 @@ class CronJobService {
       console.log('====================================');
       console.log(`${result.status} ${url.fullUrl}`); // TODO: REMOVE LOGS
       console.log('====================================');
+
+      await NotificationService.sendNotification(`${result.status} ${url.fullUrl}`);
     });
 
     // Start the newly created job
