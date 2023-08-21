@@ -9,8 +9,6 @@ import EmailService from '../../core/services/email.service';
 class AuthController {
   async signup(req: Request, res: Response) {
     try {
-      // TODO: handle validations (username, email, password)
-
       const newUser = new UserModel(req.body);
 
       const validationError = newUser.validateSync();
@@ -39,7 +37,9 @@ class AuthController {
         .status(201)
         .json({ message: 'User registered successfully', verificationToken }); // TODO: TRANS
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred during signup' }); // TODO: TRANS
+      res
+        .status(500)
+        .json({ error: 'An error occurred during signup,' + error }); // TODO: TRANS
     }
   }
 
@@ -83,7 +83,7 @@ class AuthController {
               if (error) {
                 return res
                   .status(500)
-                  .json({ error: 'An error occurred during login' }); // TODO: TRANS
+                  .json({ error: 'An error occurred during login,' + error }); // TODO: TRANS
               }
 
               const token = jwt.sign({ sub: user._id }, jwtConfig.secretKey, {
@@ -94,12 +94,14 @@ class AuthController {
           } catch (error) {
             return res
               .status(500)
-              .json({ error: 'An error occurred during login' }); // TODO: TRANS
+              .json({ error: 'An error occurred during login,' + error }); // TODO: TRANS
           }
         }
       )(req, res);
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred during login' }); // TODO: TRANS
+      res
+        .status(500)
+        .json({ error: 'An error occurred during login,' + error }); // TODO: TRANS
     }
   }
 
