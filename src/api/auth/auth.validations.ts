@@ -9,6 +9,11 @@ class AuthValidator {
     password: Joi.string().required(),
   });
 
+  private static loginValidationSchema = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+  });
+
   static async signup(req: Request, res: Response, next: NextFunction) {
     try {
       // Validate the request body against the signup schema
@@ -23,6 +28,26 @@ class AuthValidator {
       const emailInUse = await AuthValidator.checkIfEmailExists(value.email);
       if (emailInUse) {
         return res.status(400).json({ error: 'Email is already in use' });
+      }
+
+      // If validation passes, attach the valid data to the request object
+      req.body = value;
+      next();
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: 'An error occurred during validation,' + error });
+    }
+  }
+
+  static async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      // Validate the request body against the signup schema
+      const { error, value } = AuthValidator.loginValidationSchema.validate(
+        req.body
+      );
+      if (error) {
+        return res.status(400).json({ error: error.message });
       }
 
       // If validation passes, attach the valid data to the request object

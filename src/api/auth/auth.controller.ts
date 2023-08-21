@@ -7,7 +7,7 @@ import { jwtConfig } from '../../core/config/jwtConfig';
 import EmailService from '../../core/services/email.service';
 
 class AuthController {
-  async signup(req: Request, res: Response) {
+  static async signup(req: Request, res: Response) {
     try {
       const newUser = new UserModel(req.body);
 
@@ -43,69 +43,61 @@ class AuthController {
     }
   }
 
-  async login(req: Request, res: Response) {
+  static async login(req: Request, res: Response) {
     try {
-      const { email, password } = req.body;
-
-      if (!email || !password) {
-        return res
-          .status(400)
-          .json({ error: 'Email and password are required' }); // TODO: TRANS
-      }
-
       passport.authenticate(
         'local',
         { session: false },
-        async (err, user: UserDocument) => {
-          if (err) {
-            return res
-              .status(500)
-              .json({ error: 'An error occurred during login' }); // TODO: TRANS
-          }
-
-          if (!user) {
-            return res.status(401).json({ error: 'Invalid email or password' }); // TODO: TRANS
-          }
-
-          if (!user.isEmailVerified) {
-            return res.status(403).json({ error: 'Email is not verified' }); // TODO: TRANS
-          }
-
-          try {
-            const isPasswordValid = await user.comparePassword(password);
-            if (!isPasswordValid) {
-              return res
-                .status(401)
-                .json({ error: 'Invalid email or password' }); // TODO: TRANS
-            }
-
-            req.login(user, { session: false }, (error) => {
-              if (error) {
-                return res
-                  .status(500)
-                  .json({ error: 'An error occurred during login,' + error }); // TODO: TRANS
-              }
-
-              const token = jwt.sign({ sub: user._id }, jwtConfig.secretKey, {
-                expiresIn: jwtConfig.authTokenExpiration,
-              });
-              res.json({ user, token });
-            });
-          } catch (error) {
-            return res
-              .status(500)
-              .json({ error: 'An error occurred during login,' + error }); // TODO: TRANS
-          }
-        }
+        AuthController.authenticateCallback(req, res)
       )(req, res);
     } catch (error) {
       res
         .status(500)
-        .json({ error: 'An error occurred during login,' + error }); // TODO: TRANS
+        .json({ error: 'An error occurred during login' }); // TODO: TRANS
     }
   }
 
-  async verifyEmail(req: Request, res: Response) {
+  static authenticateCallback(req: Request, res: Response) {
+    return async (err, user: UserDocument) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: 'An error occurred during login' }); // TODO: TRANS
+      }
+
+      if (!user) {
+        return res.status(401).json({ error: 'Invalid email or password' }); // TODO: TRANS
+      }
+
+      if (!user.isEmailVerified) {
+        return res.status(403).json({ error: 'Email is not verified' }); // TODO: TRANS
+      }
+
+      await AuthController.handleAuthentication(user, req.body.password, res);
+    };
+  }
+
+  static async handleAuthentication(
+    user: UserDocument,
+    password: string,
+    res: Response
+  ) {
+    try {
+      const isPasswordValid = await user.comparePassword(password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ error: 'Invalid email or password' });
+      }
+
+      const token = jwt.sign({ sub: user._id }, jwtConfig.secretKey, {
+        expiresIn: jwtConfig.authTokenExpiration,
+      });
+      res.json({ user, token });
+    } catch (error) {
+      return res.status(500).json({ error: 'An error occurred during login' });
+    }
+  }
+
+  static async verifyEmail(req: Request, res: Response) {
     try {
       const { token } = req.query;
 
@@ -150,4 +142,4 @@ class AuthController {
   }
 }
 
-export default new AuthController();
+export default AuthController;
