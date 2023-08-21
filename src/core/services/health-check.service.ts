@@ -7,7 +7,7 @@ import {
   UrlAttributes,
   UrlCheckHistoryItem,
   UrlStatus,
-} from '@app/types/app-types';
+} from '@app/core/types/app-types';
 import { StatusEnum } from '../utils/app.enums';
 
 class HealthCheckService {

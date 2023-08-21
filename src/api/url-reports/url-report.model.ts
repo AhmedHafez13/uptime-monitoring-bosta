@@ -1,5 +1,5 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
-import { UrlCheckHistoryItem } from '@app/types/app-types';
+import { UrlCheckHistoryItem } from '@app/core/types/app-types';
 
 export interface UrlReportAttributes {
   urlId: mongoose.Types.ObjectId;
