@@ -8,10 +8,10 @@
 
 2. `[DONE]` Implement user authentication using Passport.js (local strategy).
 
-3. Set up routes and controllers for user signup and signin.
+3. `[DONE]` Set up routes and controllers for user signup and signin.
 
    - `[DONE]` Signup and Signin functionality (token-based authentication)
-   - Email verification
+   - `[DONE]` Email verification
 
 4. `[DONE]` Implement URL checks CRUD operations as described in the task description.
 
@@ -47,7 +47,7 @@
       - Retrieve all URL check records from the database.
       - Return a list of URL check details in the response.
 
-5. `[IN_PROGRESS]` Design and implement uptime reports generation based on checked URLs.
+5. `[DONE]` Design and implement uptime reports generation based on checked URLs.
 
    1. `[DONE]` Scheduling the URLs Checks
 
@@ -90,7 +90,7 @@
 
 ### Testing:
 
-6. Write unit tests using Jest for the implemented routes and controllers.
+6. `[DONE]` Write unit tests using Jest for the implemented routes and controllers.
 7. Ensure routes return expected responses and handle errors appropriately.
    - Check CORS.
 
@@ -101,14 +101,13 @@
 
 ### Authentication and Authorization:
 
-10. Secure routes using authentication middleware.
+10. `[DONE]` Secure routes using authentication middleware.
 11. `[DONE]` Implement authorization to ensure users can only access their own URL checks.
 
 ### Validation:
 
 12. Implement input validation and error handling for API requests.
-
-- Validate the `ObjectId`s, should be valid MongoDB ids.
+    - Validate the `ObjectId`s, should be valid MongoDB ids.
 
 ---
 
