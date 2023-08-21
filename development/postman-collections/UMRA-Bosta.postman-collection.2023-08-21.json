@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "f88709a4-3906-41b2-85b6-b2057847da11",
+		"name": "UMRA-Bosta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28155505"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Route Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/not-exists/",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"not-exists",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test4@test.com\",\n    \"password\": \"test4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/auth/login/",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test4\",\n    \"email\": \"test4@test.test\",\n    \"password\": \"test4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/auth/signup/",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"auth",
+								"signup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/auth/verify-email?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGUyNzczOTIyNDhlMDE4Yzk4ZmMxYzMiLCJpYXQiOjE2OTI1NjMyNTcsImV4cCI6MTY5MjU2Njg1N30.bhNtz8qxBwIeYH9gHmETkfoNk9aprEA_3mDeeiA0Xdc",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"auth",
+								"verify-email"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGUyNzczOTIyNDhlMDE4Yzk4ZmMxYzMiLCJpYXQiOjE2OTI1NjMyNTcsImV4cCI6MTY5MjU2Njg1N30.bhNtz8qxBwIeYH9gHmETkfoNk9aprEA_3mDeeiA0Xdc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "urls",
+			"item": [
+				{
+					"name": "createUrl",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"protocol\": \"HTTP\",\n    \"url\": \"localhost\",\n    \"port\": \"3000\",\n    \"path\": \"/comments\",\n    \"name\": \"Comments111\",\n    \"interval\": 5,\n    \"threshold\": 1,\n    \"webhook\": \"http://localhost:3004/posts\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/urls/",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"urls",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUrlDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/urls/64e0aafd9814f02fe10a1812",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"urls",
+								"64e0aafd9814f02fe10a1812"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUrls",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/urls/",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"urls",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUrl",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\": \"www.google.com\",\n    \"protocol\": \"HTTPS\",\n    \"name\": \"GoogleTest111\",\n    \"interval\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/urls/64e1322e890ece245086cb11",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"urls",
+								"64e1322e890ece245086cb11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUrl",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API_URL}}/urls/64e2813e694db8bdfa945312",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"urls",
+								"64e2813e694db8bdfa945312"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGRmYmUzZGY4MmUyMDc3MTc2YjgwYmMiLCJpYXQiOjE2OTIzODU3Njh9.Diqfp8ecAvwggWHKFtyGUuf4H_KSXBepOP12LB-DuUw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_API_URL",
+			"value": "http://127.0.0.1:8080/api",
+			"type": "string"
+		}
+	]
+}
