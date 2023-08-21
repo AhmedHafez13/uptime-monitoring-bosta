@@ -16,7 +16,7 @@ class AuthController {
         const errors = Object.keys(validationError.errors).map((field) => {
           return {
             field,
-            message: validationError.errors[field].message, // TODO: TRANS
+            message: validationError.errors[field].message,
           };
         });
         return res.status(400).json({ errors });
@@ -33,11 +33,11 @@ class AuthController {
       // Send the verification email with the token
       EmailService.sendVerificationEmail(newUser.email, verificationToken);
 
-      res.status(201).json({ message: 'User registered successfully' }); // TODO: TRANS
+      res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
       res
         .status(500)
-        .json({ error: 'An error occurred during signup,' + error }); // TODO: TRANS
+        .json({ error: 'An error occurred during signup,' + error });
     }
   }
 
@@ -49,7 +49,7 @@ class AuthController {
         AuthController.authenticateCallback(req, res)
       )(req, res);
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred during login' }); // TODO: TRANS
+      res.status(500).json({ error: 'An error occurred during login' });
     }
   }
 
@@ -58,15 +58,15 @@ class AuthController {
       if (err) {
         return res
           .status(500)
-          .json({ error: 'An error occurred during login' }); // TODO: TRANS
+          .json({ error: 'An error occurred during login' });
       }
 
       if (!user) {
-        return res.status(401).json({ error: 'Invalid email or password' }); // TODO: TRANS
+        return res.status(401).json({ error: 'Invalid email or password' });
       }
 
       if (!user.isEmailVerified) {
-        return res.status(403).json({ error: 'Email is not verified' }); // TODO: TRANS
+        return res.status(403).json({ error: 'Email is not verified' });
       }
 
       await AuthController.handleAuthentication(user, req.body.password, res);
@@ -100,7 +100,7 @@ class AuthController {
       if (!token) {
         return res
           .status(400)
-          .json({ error: 'Verification token is required' }); // TODO: TRANS
+          .json({ error: 'Verification token is required' });
       }
 
       try {
@@ -112,28 +112,28 @@ class AuthController {
         if (!decodedToken.userId) {
           return res
             .status(400)
-            .json({ error: 'Invalid verification token format' }); // TODO: TRANS
+            .json({ error: 'Invalid verification token format' });
         }
 
         // Find the user by userId
         const user = await UserModel.findById(decodedToken.userId);
 
         if (!user) {
-          return res.status(404).json({ error: 'User not found' }); // TODO: TRANS
+          return res.status(404).json({ error: 'User not found' });
         }
 
         // Mark the user's email as verified
         user.isEmailVerified = true;
         await user.save();
 
-        return res.json({ message: 'Email verification successful' }); // TODO: TRANS
+        return res.json({ message: 'Email verification successful' });
       } catch (error) {
-        return res.status(400).json({ error: 'Invalid verification token' }); // TODO: TRANS
+        return res.status(400).json({ error: 'Invalid verification token' });
       }
     } catch (error) {
       return res
         .status(500)
-        .json({ error: 'An error occurred during email verification' }); // TODO: TRANS
+        .json({ error: 'An error occurred during email verification' });
     }
   }
 }

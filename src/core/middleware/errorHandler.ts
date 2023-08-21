@@ -33,6 +33,6 @@ export const errorHandler = (
   if (err instanceof HttpError) {
     res.status(err.statusCode).json({ error: err.message });
   } else {
-    res.status(500).json({ error: 'Something went wrong' }); // TODO: TRANS
+    res.status(500).json({ error: 'Something went wrong' });
   }
 };

@@ -28,7 +28,7 @@ class RoutesConfig {
         res: express.Response,
         next: express.NextFunction
       ) => {
-        const error = new NotFoundError('Route not found'); // TODO: TRANS
+        const error = new NotFoundError('Route not found');
         next(error);
       }
     );

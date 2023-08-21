@@ -41,7 +41,7 @@ class CronJobService {
 
       if (result.status === StatusEnum.Down && result.urlReport) {
         const history = result.urlReport.history;
-        const threshold = url.threshold || 1; // TODO: MOVE TO CENTRALIZED DEFAULTS
+        const threshold = url.threshold || 1;
 
         if (history.length >= threshold) {
           const isAllDown = history
@@ -53,7 +53,7 @@ class CronJobService {
               `${result.status} ${url.fullUrl}`,
               {
                 email: userEmail,
-                title: `[Alert] ${url.name} is Down!`, // TODO: TRANS
+                title: `[Alert] ${url.name} is Down!`,
                 webhookUrl: url.webhook,
               }
             );

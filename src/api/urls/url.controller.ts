@@ -12,7 +12,7 @@ class UrlController {
   ) {
     try {
       if (!req.user) {
-        return res.status(401).json({ error: 'Unauthorized' }); // TODO: TRANS
+        return res.status(401).json({ error: 'Unauthorized' });
       }
 
       const userId = (<UserDocument>req.user)._id.toString();
@@ -37,7 +37,7 @@ class UrlController {
       if (!url || !protocol || !name) {
         return res
           .status(400)
-          .json({ error: 'URL, protocol, and name are required fields' }); // TODO: TRANS
+          .json({ error: 'URL, protocol, and name are required fields' });
       }
 
       const newData: UrlAttributes = {
@@ -68,11 +68,11 @@ class UrlController {
 
       res
         .status(201)
-        .json({ message: 'Operation completed successfully', url: result }); // TODO: TRANS
+        .json({ message: 'Operation completed successfully', url: result });
     } catch (error) {
       res.status(500).json({
         error: 'An error occurred during the operation, ' + error.message,
-      }); // TODO: TRANS
+      });
     }
   }
 
@@ -92,12 +92,12 @@ class UrlController {
         // Find the URL in the database
         const urlDetails = await UrlModel.findById(urlId);
         if (!urlDetails) {
-          res.status(404).json({ error: 'URL details not found' }); // TODO: TRANS
+          res.status(404).json({ error: 'URL details not found' });
           return null;
         }
         // Check if the URL belongs to the authenticated user
         if (urlDetails.user.toString() !== userId) {
-          res.status(403).json({ error: 'Forbidden' }); // TODO: TRANS
+          res.status(403).json({ error: 'Forbidden' });
           return null;
         }
 
@@ -118,18 +118,18 @@ class UrlController {
 
       const urlDetails = await UrlModel.findById(urlId);
       if (!urlDetails) {
-        return res.status(404).json({ error: 'URL details not found' }); // TODO: TRANS
+        return res.status(404).json({ error: 'URL details not found' });
       }
       // Check if the URL belongs to the authenticated user
       if (urlDetails.user.toString() !== userId) {
-        return res.status(403).json({ error: 'Forbidden' }); // TODO: TRANS
+        return res.status(403).json({ error: 'Forbidden' });
       }
 
       res.json({ urlDetails });
     } catch (error) {
       res
         .status(500)
-        .json({ error: 'An error occurred while fetching URL details' }); // TODO: TRANS
+        .json({ error: 'An error occurred while fetching URL details' });
     }
   }
 
@@ -140,17 +140,17 @@ class UrlController {
 
       const urlDetails = await UrlModel.findById(urlId);
       if (!urlDetails) {
-        return res.status(404).json({ error: 'URL details not found' }); // TODO: TRANS
+        return res.status(404).json({ error: 'URL details not found' });
       }
       // Check if the URL belongs to the authenticated user
       if (urlDetails.user.toString() !== userId) {
-        return res.status(403).json({ error: 'Forbidden' }); // TODO: TRANS
+        return res.status(403).json({ error: 'Forbidden' });
       }
 
       const deletedUrl = await UrlModel.findByIdAndDelete(urlId);
 
       if (!deletedUrl) {
-        res.status(404).json({ error: 'URL details not found' }); // TODO: TRANS
+        res.status(404).json({ error: 'URL details not found' });
         return;
       }
 
@@ -160,11 +160,11 @@ class UrlController {
       // Delete the url report
       await UrlReportModel.findOneAndDelete({ urlId });
 
-      res.json({ message: 'URL deleted successfully' }); // TODO: TRANS
+      res.json({ message: 'URL deleted successfully' });
     } catch (error) {
       res.status(500).json({
         error: 'An error occurred while deleting URL, ' + error.message,
-      }); // TODO: TRANS
+      });
     }
   }
 
@@ -176,7 +176,7 @@ class UrlController {
 
       res.json({ urls: allUrls });
     } catch (error) {
-      res.status(500).json({ error: 'An error occurred while fetching URLs' }); // TODO: TRANS
+      res.status(500).json({ error: 'An error occurred while fetching URLs' });
     }
   }
 }
