@@ -26,7 +26,6 @@ describe('AuthController', () => {
       expect(mockResponse.status).toHaveBeenCalledWith(201);
       expect(mockResponse.json).toHaveBeenCalledWith({
         message: 'User registered successfully',
-        verificationToken: 'mockToken', // Mocked jwt.sign return value
       });
       expect(UserModel.prototype.save).toHaveBeenCalled();
       expect(EmailService.sendVerificationEmail).toHaveBeenCalledWith(

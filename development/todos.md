@@ -149,6 +149,7 @@
 
 ## Enhancements:
 
+- Handle error logging.
 - Log requests to the console. Use an external package.
 - Move types to a centralized type file
 - Create a file for defaults (i.e. url check `interval`)

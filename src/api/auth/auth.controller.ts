@@ -33,9 +33,7 @@ class AuthController {
       // Send the verification email with the token
       EmailService.sendVerificationEmail(newUser.email, verificationToken);
 
-      res
-        .status(201)
-        .json({ message: 'User registered successfully', verificationToken }); // TODO: TRANS
+      res.status(201).json({ message: 'User registered successfully' }); // TODO: TRANS
     } catch (error) {
       res
         .status(500)
@@ -51,9 +49,7 @@ class AuthController {
         AuthController.authenticateCallback(req, res)
       )(req, res);
     } catch (error) {
-      res
-        .status(500)
-        .json({ error: 'An error occurred during login' }); // TODO: TRANS
+      res.status(500).json({ error: 'An error occurred during login' }); // TODO: TRANS
     }
   }
 
