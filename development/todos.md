@@ -91,13 +91,12 @@
 ### Testing:
 
 6. `[DONE]` Write unit tests using Jest for the implemented routes and controllers.
-7. Ensure routes return expected responses and handle errors appropriately.
-   - Check CORS.
+7. `[DONE]` Ensure routes return expected responses and handle errors appropriately.
 
 ### Documentation:
 
-8. Write API documentation in the README.md file.
-9. Describe endpoints, request/response formats, and authentication methods.
+8. `[DONE]` Write API documentation in the README.md file.
+9. `[DONE]` Describe endpoints, request/response formats, and authentication methods.
 
 ### Authentication and Authorization:
 
@@ -106,7 +105,7 @@
 
 ### Validation:
 
-12. Implement input validation and error handling for API requests.
+12. `[PARTIALLY DONE]` Implement input validation and error handling for API requests.
     - Validate the `ObjectId`s, should be valid MongoDB ids.
 
 ---
@@ -116,6 +115,10 @@
 ### Dockerization:
 
 13. Create Dockerfiles for the backend application and MongoDB.
+
+    - `[DONE]` Backend Dockerfile
+    - MongoDB Dockerfile
+
 14. Define a docker-compose.yml file to orchestrate the containers.
 
 ### CI/CD Pipeline with GitHub Actions:
@@ -131,7 +134,7 @@
 
 ### Bonus Features (Time Permitting):
 
-20. Implement optional bonus features from the task description, such as API documentation, Pushover integration, and more.
+20. Implement optional bonus features from the task description, such as API documentation, Pushover integration.
 
 ### Final Testing and Debugging:
 

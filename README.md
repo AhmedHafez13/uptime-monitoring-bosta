@@ -12,7 +12,7 @@ The Uptime Monitoring RESTful API project aims to create a comprehensive system 
 - URL Checks: Create, update, and delete URL checks to monitor their availability.
 - Notifications: Receive notifications (email and potentially other methods) when a monitored URL experiences downtime or uptime.
 - Uptime Reports: View detailed reports about the availability, response time, downtime, and uptime of monitored URLs.
-- Tagging: Group URL checks by tags and generate reports based on tags.
+- [TODO] Tagging: Group URL checks by tags and generate reports based on tags.
 
 ## Getting Started
 
@@ -34,11 +34,13 @@ To get started with the project, follow these steps:
    npm start
    ```
 
-4. **Access the API:** Access the API endpoints by sending requests to `http://localhost:3000` (or as configured).
-
+3. **Run Tests:** Run tests using Jest:
+   ```
+   npm run test
+   ```
 ## API Documentation
 
-The detailed API documentation can be found in the [API Docs.md](Development/API Docs.md) file. This documentation provides information about available endpoints, request/response formats, and authentication.
+The detailed API documentation can be found in the [API Docs.md](./development/api-docs/index.md) file. This documentation provides information about available endpoints, request/response formats, and authentication.
 
 ## Credits
 
