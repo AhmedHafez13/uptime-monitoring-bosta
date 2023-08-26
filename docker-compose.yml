@@ -1,9 +1,11 @@
 version: '3'
+
 services:
-  mongo:
+  mongo_db:
     image: mongo
+    restart: always
     ports:
-      - "27017:27017"
+      - 27017:27017
     volumes:
       - mongo-data:/data/db
   backend:
@@ -11,13 +13,24 @@ services:
       context: .
       dockerfile: backend.Dockerfile
     ports:
-      - "8080:8080"
+      - 8080:8080
     volumes:
-      - ./src:/app/src
+      - .:/usr/src/app
     environment:
       NODE_ENV: development
-    command: npm start
+      MONGO_IP: mongo_db
+      MONGO_PORT: 27017
+      MONGO_DB_NAME: uptime-monitoring
+      DOMAIN_NAME: example.com
+      PORT: 8080
+      JWT_SECRET: your_secret_key_here
+      JWT_EXPIRE_TIME: 1h
+      VERIFICATION_TOKEN_EXPIRE_TIME: 1h
+      EMAIL_SERVICE: your_email_service
+      EMAIL_USER: your_email_username
+      EMAIL_PASS: your_email_password
     depends_on:
-      - mongo
+      - mongo_db
+
 volumes:
-  mongo-data:
+  mongo-data: {}
